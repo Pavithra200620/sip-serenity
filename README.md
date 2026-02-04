@@ -28,7 +28,7 @@ Sip Serenity is a full-stack tea ordering web application.
 ## Menu
 ![Menu](https://github.com/Pavithra200620/sip-serenity/blob/main/Screenshot%202026-02-04%20075240.png?raw=true)
 ## Contact 
-![contact]()
+![contact](https://github.com/Pavithra200620/sip-serenity/blob/main/Screenshot%202026-02-04%20075337.png?raw=true)
 ## Checkout
 ![Checkout]()
 ## 👩‍💻 Developed By
