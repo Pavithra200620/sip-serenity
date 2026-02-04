@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sip Serenity - Tea Delivery</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+    body { background:#fdfcf7; color:#333; scroll-behavior: smooth; }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      z-index: 10;
+    }
+    nav .logo { display: flex; align-items: center; gap: 10px; font-size: 1.5rem; font-weight: 600; }
+    nav .logo img { width: 40px; height: 40px; }
+    .nav-links { list-style: none; display: flex; gap: 25px; }
+    .nav-links li a {
+      color: white; text-decoration: none; font-weight: 500; transition: color 0.3s;
+    }
+    .nav-links li a:hover { color: #f4d35e; }
+
+    /* Hero / Home */
+    header {
+      background:url('https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding-top:80px;
+    }
+    header h1 { font-size:3rem; margin-bottom:1rem; }
+    header p { font-size:1.2rem; margin-bottom:2rem; max-width:600px; }
+    .hero-buttons { display:flex; gap:30px; justify-content:center; }
+    .hero-buttons a {
+      background:#4a7c59; color:white; padding:12px 24px;
+      border-radius:6px; text-decoration:none; font-weight:500;
+      transition:background 0.3s;
+    }
+    .hero-buttons a:hover { background:#3a6248; }
+    
+    /* Section Styling */
+    section { padding:80px 20px; max-width:1000px; margin:auto; }
+    section h2 { text-align:center; margin-bottom:30px; color:#4a7c59; }
+
+    /* About Us */
+ .about-container {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* 🔥 Circle image – ALWAYS */
+.about-container img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.about-container p {
+  width: 55%;
+  line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+  }
+
+  .about-container p {
+    width: 100%;
+  }
+}
+
+
+
+
+
+    /* Menu Section */
+    /* MENU GRID – CLEAN VERSION */
+.category{
+  margin-bottom:60px;
+}
+
+.category h3{
+  margin-bottom:20px;
+  color:#333;
+}     
+    .menu {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap; /* allows wrapping if screen is small */
+}
+.item {
+  width: 300px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+.item img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+#menu h3{
+  text-align: center;
+}
+
+
+    .item:hover { transform: translateY(-5px); }
+    
+    .item button {
+      background:#4a7c59; color:white; padding:10px 20px;
+      border:none; border-radius:6px; cursor:pointer; transition:background 0.3s;
+    }
+    .item button:hover { background:#3a6248; }
+
+    /* Cart */
+    /* Cart item row layout */
+/* Cart Item Row – fixed column alignment */
+/* Cart item row */
+#cartItems li {
+  display: flex;
+  justify-content: space-between; /* item name left, qty center, price right */
+  align-items: center;
+  background: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* Tea name */
+#cartItems li span:first-child {
+  flex: 2;
+  font-weight: 500;
+}
+
+/* Quantity controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-controls button {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: #4a7c59;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.qty-controls button:hover {
+  background: #3a6248;
+}
+
+/* Quantity number */
+.qty-controls strong {
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Price */
+#cartItems li span:last-child {
+  flex: 1;
+  text-align: right;
+  font-weight: 500;
+}
+
+/* Footer - total & checkout *//* Footer - total & checkout */
+.cart-footer {
+  display: flex;
+  flex-direction: column;      /* stack vertically */
+  align-items: flex-end;       /* right side alignment */
+  gap: 8px;                    /* small gap between total and button */
+  margin-top: 20px;
+}
+
+/* Total text */
+#total {
+  font-weight: 700;            /* bold */
+  color: #4a7c59;              /* green color */
+  font-size: 1.1rem;
+}
+
+/* Checkout button */
+#checkout {
+  background: #d88a02;         /* orange */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+#checkout:hover {
+  background: #1329d2;         /* darker blue on hover */
+}
+
+
+/* Total text */
+.testimonial img {
+  width: 250px;   /* was 120px */
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+/* Testimonials */
+#testimonials {
+  background: #fdfcf7;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+#testimonials h2 {
+  color: #4a7c59;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.testimonials-container {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.testimonial {
+  max-width: 250px;
+  text-align: center;
+}
+
+
+
+.testimonial p {
+  font-style: italic;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.testimonial h4 {
+  color: #4a7c59;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
+
+/* Contact Form */
+ #contact {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+#contact h2 {
+  color: #4a7c59;
+  margin-bottom: 20px;
+}
+
+#contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+#contact input,
+#contact textarea {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+#contact button {
+  background: #4a7c59;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#contact button:hover {
+  background: #3a6248;
+}
+
+#contact p {
+  margin: 5px 0;
+  color: #333;
+  font-weight: 500;
+}
+
+
+
+    footer { background:#4a7c59; color:white; text-align:center; padding:20px; margin-top:40px; }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <img src="https://cdn-icons-png.flaticon.com/512/924/924514.png" alt="Tea Logo">
+      <span>Sip Serenity</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+
+      <li><a href="#cart">Cart</a></li>
+      <li><a href="#contact">Contact</a></li>
+     
+
+    </ul>
+  </nav>
+
+  <!-- Hero / Home -->
+  <header id="home">
+    <h1>Fresh Tea Deliverey</h1>
+    <p>Order your favorite blends and get them delivered to your doorstep in minutes. Freshness in every sip!</p>
+    <div class="hero-buttons">
+      <a href="#menu">Order Now</a>
+      <a href="#contact">Contact Us</a>
+    </div>
+  </header>
+
+  <!-- About Us -->
+ 
+  <section id="about">
+  <h2>About Us 🍃</h2>
+
+  <div class="about-container">
+    <img src="tea.jpg".jpg" alt="Couple enjoying tea">
+
+    <p>
+       At Sip Serenity, every cup of tea is crafted to bring calm and joy. 
+From classic Masala Chai to soothing herbal blends, we use fresh, high-quality ingredients. 
+Tea is more than a drink — it’s a moment to pause, refresh, and enjoy life.
+    </p>
+  </div>
+</section>
+
+  <!-- Menu -->
+  <!-- Menu -->
+<section id="menu">
+  <h2>Our Tea Menu 🍵</h2>
+
+  <!-- Classic Chai -->
+  <h3>☕ Classic Chai</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="masalachai.jpg" />
+      <h3>Masala Chai</h3>
+      <p>₹50</p>
+      <button onclick="addToCart('Masala Chai',50)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="gingertea.jpg" />
+      <h3>Ginger Chai</h3>
+      <p>₹45</p>
+      <button onclick="addToCart('Ginger Chai',45)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="elaichi.jpg" />
+      <h3>Elaichi Chai</h3>
+      <p>₹45</p>
+      <button onclick="addToCart('Elaichi Chai',45)">Add to Cart</button>
+    </div>
+  
+   
+
+  <!-- Health & Herbal -->
+   <h3>🌿 Health & Herbal Teas</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="lemongrass.jpg" />
+
+      <h3>Lemongrass Tea</h3>
+      <p>₹55</p>
+      <button onclick="addToCart('Lemongrass Tea',55)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="hibiscoustea.jpg" />
+      <h3>Hibiscus Tea</h3>
+      <p>₹60</p>
+      <button onclick="addToCart('Hibiscus Tea',60)">Add to Cart</button>
+    </div> 
+
+    <div class="item">
+      <img src="tulsi tea.jpg" />
+      <h3>Tulsi Tea</h3>
+      <p>₹55</p>
+      <button onclick="addToCart('Tulsi Tea',55)">Add to Cart</button>
+    </div>
+</div>
+
+  <!-- Green & Light -->
+  <h3>🍃 Green & Light Teas</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="greentea.jpg" />
+      <h3>Classic Green Tea</h3>
+      <p>₹40</p>
+      <button onclick="addToCart('Green Tea',40)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="jasminetea.jpg" />
+      <h3>Jasmine Green Tea</h3>
+      <p>₹60</p>
+      <button onclick="addToCart('Jasmine Green Tea',60)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="matchatea.webp" />
+      <h3>Matcha Tea</h3>
+      <p>₹90</p>
+      <button onclick="addToCart('Matcha Tea',90)">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- International -->
+  <h3>🌍 International Teas</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="Thai-Iced-Tea-in-Plastic-Cup.jpg" />
+      <h3>Thai Milk Tea</h3>
+      <p>₹90</p>
+      <button onclick="addToCart('Thai Milk Tea',90)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="englishbreakfattea.jpg" />
+      <h3>English Breakfast Tea</h3>
+      <p>₹75</p>
+      <button onclick="addToCart('English Breakfast Tea',75)">Add to Cart</button>
+    </div>
+    <div class="item">
+      <img src="moroccan-food-tour-Moroccan-mint-tea-1620x1080.jpg" />
+      <h3>Moroccan mint Tea</h3>
+      <p>₹75</p>
+      <button onclick="addToCart('Moroccan mint Tea',75)">Add to Cart</button>
+    </div>
+  </div>
+  <h3>🍋 Fresh and Detox Specials</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="honeylemontea.jpg" />
+      <h3>Honey lemon  Tea</h3>
+      <p>₹75</p>
+      <button onclick="addToCart('Honey Lemon Tea',75)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="lemongingertea.jpg" />
+      <h3>Lemon ginger Tea</h3>
+      <p>₹70</p>
+      <button onclick="addToCart('Lemon Ginger Tea',70)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="orangepeeltea.jpg" />
+      <h3>Orange Peel Tea</h3>
+      <p>₹75</p>
+      <button onclick="addToCart('orange peel tea Tea',75)">Add to Cart</button>
+    </div>
+  </div>
+  <h3>🧊 Iced and Cold Brew Teas</h3>
+  <div class="menu">
+    <div class="item">
+      <img src="icedlemontea.jpg" />
+      <h3>Iced lemon Tea</h3>
+      <p>₹90</p>
+      <button onclick="addToCart('Iced Lemon Tea',90)">Add to Cart</button>
+    </div>
+
+    <div class="item">
+      <img src="Mint-Mojito-Iced-Tea-.webp" />
+      <h3>Mint Iced Tea</h3>
+      <p>₹80</p>
+      <button onclick="addToCart('Mint Iced Tea',80)">Add to Cart</button>
+    </div>
+    <div class="item">
+      <img src="coldbrewgreentea.jpg" />
+      <h3>Cold brew Green Tea</h3>
+      <p>₹70</p>
+      <button onclick="addToCart('Cold Brew Tea',70)">Add to Cart</button>
+    </div>
+  </div>
+</section>
+<!-- Testimonials -->
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="testimonials-container">
+    <div class="testimonial">
+      <img src="1.jpg" alt="Oliviya">
+      <p>"Masala Chai was rich and comforting. Perfect for my evening break!"</p>
+      <h4>Oliviya</h4>
+    </div>
+    <div class="testimonial">
+      <img src="men.jpg" alt="James Wilson">
+     <p>"Loved the Ginger Chai 🌿. Bold flavor, quick delivery, and perfect for relaxing evenings."</p>
+     <h4>James Wilson</h4>
+    </div>
+    <div class="testimonial">
+      <img src="43.jpg" alt="Emily">
+      <p>"Elaichi Chai was aromatic and fresh. Will definitely order again!"</p>
+      <h4>Emily</h4>
+    </div>
+  </div>
+</section>
+
+  
+
+  <!-- Cart -->
+  <section id="cart">
+  <h2>Your Cart 🛒</h2>
+  <ul id="cartItems"></ul>
+
+
+
+
+
+
+<div class="cart-footer">
+    <p id="total">Total: ₹0</p><br>
+    <button id="checkout">Checkout</button>
+  </div>
+</section>
+
+  <!-- Contact -->
+  <section id="contact">
+  <h2>Contact Us</h2>
+
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Your Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+
+  <p>📍 123 Tea Street, Krishnagiri, Tamil Nadu</p>
+  <p>📞 +91 98765 43210</p>
+  <p>✉️ info@sipserenity.com</p>
+  
+  <p>Timing: Mon-Sat 6:00 AM - 8:30PM | Sun 4:00 PM - 7:30 PM</p>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Sip Serenity Tea Delivery | Designed by Pavithra</p>
+  </footer>
+
+  <!-- JS Cart Logic -->
+  <script>
+  let cart = {};
+
+  function addToCart(name, price) {
+    if (!cart[name]) {
+      cart[name] = { price: price, qty: 1 };
+    } else {
+      cart[name].qty++;
+    }
+    renderCart();
+  }
+
+  function decreaseQty(name) {
+    if (cart[name]) {
+      cart[name].qty--;
+      if (cart[name].qty === 0) {
+        delete cart[name];
+      }
+    }
+    renderCart();
+  }
+
+  function renderCart() {
+    const cartItems = document.getElementById("cartItems");
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    for (let item in cart) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <span>${item}</span>
+        <div class="qty-controls">
+          <button onclick="decreaseQty('${item}')">−</button>
+          <strong>${cart[item].qty}</strong>
+          <button onclick="addToCart('${item}', ${cart[item].price})">+</button>
+        </div>
+        <span>₹${cart[item].price * cart[item].qty}</span>
+      `;
+      cartItems.appendChild(li);
+      total += cart[item].price * cart[item].qty;
+    }
+
+    if (total === 0) {
+      cartItems.innerHTML = "<li>Your cart is empty ☕</li>";
+    }
+
+    document.getElementById("total").textContent = "Total: ₹" + total;
+    updateDeliveryTime(
+  Object.values(cart).reduce((sum, item) => sum + item.qty, 0)
+);
+
+  }
+
+  document.getElementById("checkout").addEventListener("click", async () => {
+  if (Object.keys(cart).length === 0) {
+    alert("Your cart is empty ☕");
+    return;
+  }
+
+  const items = Object.keys(cart).map(name => ({
+    name,
+    price: cart[name].price,
+    qty: cart[name].qty
+  }));
+
+  const total = items.reduce((sum, i) => sum + i.price * i.qty, 0);
+
+  try {
+    const res = await fetch("http://localhost:5000/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items, total,customerEmail: "user@gmail.com" })
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    cart = {};
+    renderCart();
+  } catch (err) {
+    alert("Order failed 😢");
+    console.log(err);
+  }
+});
+
+
+</script>
+
+
+
+</body>
+</html>
