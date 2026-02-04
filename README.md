@@ -22,5 +22,7 @@ Sip Serenity is a full-stack tea ordering web application.
    node server.js
 3. Open frontend in browser
 
+## Output 
+![Output](https://github.com/Pavithra200620/sip-serenity/blob/main/Screenshot%202026-02-04%20075138.png?raw=true)
 ## 👩‍💻 Developed By
 Pavithra
